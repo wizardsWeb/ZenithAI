@@ -1,14 +1,12 @@
-import React from 'react'
+// UserMessage.js
+import React from 'react';
 
-const UserMessage = (props) => {
-    const { message } = props;
-  return (
-    <div className='flex justify-end w-full'>
-        <div className='bg-[#94BDF1] w-3/5 p-3 mr-9 mt-6 rounded-md'>
-            { message }
+const UserMessage = ({ message }) => {
+    return (
+        <div className="w-fit ml-auto max-w-lg bg-blue-600 text-white p-4 rounded-lg shadow-md animate-slideInRight">
+            {message}
         </div>
-    </div>
-  )
-}
+    );
+};
 
 export default UserMessage;

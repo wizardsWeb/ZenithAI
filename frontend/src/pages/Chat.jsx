@@ -1,112 +1,127 @@
-import React, { useEffect } from 'react';
-import {useState} from 'react'
+import React, { useState } from 'react';
 import BotMessage from '../components/BotMessage';
 import UserMessage from '../components/UserMessage';
 import TextInput from '../components/TextInput';
-
-import { BiSolidMicrophone } from 'react-icons/bi';
 import VoiceInput from '../components/VoiceInput';
+import { BiSolidMicrophone } from 'react-icons/bi';
+import QuizModal from '../components/QuizModal';
 
 const Chat = () => {
-    const [isVoiceActivated, useVoice] = useState(false);
-    const [userNumber, setNumber] = useState(0);
-    const [chatHistory, addMessage] = useState([]);
-    const [messageData, setData] = useState("");
+  const [isVoiceActivated, setVoiceActivated] = useState(false);
+  const [isQuizModalOpen, setQuizModalOpen] = useState(false);
+  const [showQuizButton, setShowQuizButton] = useState(true); // State for showing the button
 
-    /* useEffect(() => {
-        fetch("http://127.0.0.1:8080/predict").then(
-            res => res.json()
-        ).then(
-            data => {
-                setData(data);
-                addMessage([...chatHistory, data])
-                console.log(chatHistory, data);
-            }
-        )
-    }, [userNumber]); */
+  const [chatHistory, setChatHistory] = useState([
+    { type: 'bot', message: 'Hi! How are you feeling today?' },
+  ]);
 
-    /* useEffect(() => {
-        console.log("Started");
-        fetch("/predict").then((res) => {
-            console.log(res.json());
-            res.json().then((data) => {
-                console.log(data);
-                addMessage([...chatHistory, data]);
-                console.log(chatHistory);
-            })}
-        )
-    }, []); */
+  const handleMessageAdd = async (type, message) => {
+    setChatHistory((prevHistory) => [...prevHistory, { type, message }]);
 
-    const handleMessaggeAdd = (type, message) => {
-        const msg = {
-            type: type,
-            message: message
-        }
-        console.log(msg);
+    if (type === 'user') {
+      try {
+        const response = await fetch('http://127.0.0.1:8080/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: message }),
+        });
 
-        addMessage([...chatHistory, msg]);
-        const response = fetch("http://127.0.0.1:8080/predict", {
-            method : 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(msg)
-        }).then(
-            res => {
-                res.json().then((data) => {
-                    console.log(data.message);
-                    return data.message;
-                })
-            }
-        )
-        console.log("Response: ", response);
-        setNumber(userNumber+1);
-        console.log(chatHistory);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        setChatHistory((prevHistory) => [
+          ...prevHistory,
+          { type: 'bot', message: data.data },
+        ]);
+      } catch (error) {
+        console.error('Error:', error);
+        setChatHistory((prevHistory) => [
+          ...prevHistory,
+          { type: 'bot', message: 'Oops! Something went wrong.' },
+        ]);
+      }
     }
+  };
 
-  return (
-    <div className='w-full flex justify-between'>
-        <div className={`${isVoiceActivated ? 'w-7/12' : 'w-full'}`}>
-            <div className='w-full h-16 bg-slate-300 flex items-center p-5 shadow-lg' >
-                <p className='text-xl font-semibold'>
-                    Talk with me
-                </p>
-                <button className='flex items-center gap-2 bg-[#5E9FF2] hover:bg-[#327AD9] p-3 rounded-md mx-12' onClick={() => {
-                    if (isVoiceActivated) useVoice(false);
-                    else useVoice(true);
-                }}>
-                    <BiSolidMicrophone />
-                    Use Voice
-                </button>
-            </div>
-            <div className='h-[77vh] overflow-y-scroll'>
-                <BotMessage message={"Hi! How are you feeling today?"} />
-                <UserMessage message={"I'm not feeling that good..."} />
-                <BotMessage message={"That's not good....what's wrong?"} />
-                <UserMessage message={"I'm really not feeling well today. I've been feeling so down, and it's been hard to shake this feeling of sadness and emptiness. I don't even know where it's coming from; it just seems like everything is going wrong in my life right now, and I can't find any joy or motivation. I've been struggling with my thoughts and emotions, and I just don't know how to deal with it."} />
-                <BotMessage message={"Can you elaborate further on why you feel this way?"} />
-                <UserMessage message={"I wish I could pinpoint exactly what's causing me to feel this way, but it's not that simple. It's like a combination of various factors piling up. I've been dealing with a lot of stress at work, and it feels like I'm constantly under pressure to meet deadlines and perform well. On top of that, there are some personal issues I'm grappling with, like problems in my relationships and a sense of loneliness. It's all become overwhelming, and I'm finding it hard to cope."} />
-                <BotMessage message={"I'm really sorry to hear that you're going through such a tough time, and I want you to know that you're not alone in feeling this way. It's completely normal to face challenges and periods of emotional distress in life."} />
-                <UserMessage message={"Thanks for that!"} />
-                {chatHistory.map(chat => {
-                    if (chat.type == "user") {
-                        return <UserMessage message={chat.message} />
-                    }
-                    else {
-                        return <BotMessage message={chat.data} />
-                    }
-                })}
-            </div>
-
-            <div className='p-5 fixed w-10/12 bottom-1'>
-                <TextInput handleMessageAdd={handleMessaggeAdd} />
-            </div>
-        </div>
-        <div className={`${isVoiceActivated ? 'w-5/12' : 'hidden'}`}>
-            <VoiceInput />
-        </div>
-    </div>
-  )
+  const handleVoiceInput = (speechText) => {
+    if (speechText) {
+    //   handleMessageAdd('user', speechText);
+        return
 }
+  };
+  const handleQuizSubmit = (quizResponse) => {
+    setChatHistory((prevHistory) => [
+      ...prevHistory,
+      { type: 'user', message: `Quiz Response: ${quizResponse}` },
+    ]);
+    setChatHistory((prevHistory) => [
+      ...prevHistory,
+      { type: 'bot', message: 'Thank you for sharing your feelings!' },
+    ]);
+  };
+
+  const handleQuizButtonClick = () => {
+    setQuizModalOpen(true);
+    setShowQuizButton(false);
+  };
+  return (
+    <div className="w-full flex justify-between  bg-gray-50">
+      <div className={`${isVoiceActivated ? 'w-7/12' : 'w-full'} flex flex-col`}>
+        {/* Header */}
+        <div className="w-full h-16 bg-blue-500 text-white flex items-center px-5 shadow-lg">
+          <p className="text-xl font-semibold">Talk with Me</p>
+          <button
+            type="button"
+            className="ml-auto flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md"
+            onClick={() => setVoiceActivated(!isVoiceActivated)}
+          >
+            <BiSolidMicrophone size={20} />
+            Use Voice
+          </button>
+                {/* Quiz Button */}
+                {showQuizButton && (
+          <div className="p-5 text-center">
+            <button
+              className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600"
+              onClick={handleQuizButtonClick}
+            >
+              Would you like to understand your feelings better?
+            </button>
+          </div>
+        )}
+        </div>
+        
+        {/* Chat History */}
+        <div className="h-[calc(100vh-160px)] overflow-y-scroll p-5">
+          {chatHistory.map((chat, index) =>
+            chat.type === 'user' ? (
+              <UserMessage key={index} message={chat.message} />
+            ) : (
+              <BotMessage key={index} message={chat.message} />
+            )
+          )}
+        </div>
+
+        {/* Text Input */}
+        <div className="p-5 fixed bottom-0 w-[86vw]">
+          <TextInput handleMessageAdd={handleMessageAdd} />
+        </div>
+      </div>
+
+      {/* Voice Input */}
+      {isVoiceActivated && (
+        <div className="w-5/12 bg-gray-100 shadow-lg">
+          <VoiceInput handleVoiceInput={handleVoiceInput} />
+        </div>
+      )}
+            {/* Quiz Modal */}
+            <QuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setQuizModalOpen(false)}
+        onSubmit={handleQuizSubmit}
+      />
+    </div>
+  );
+};
 
 export default Chat;

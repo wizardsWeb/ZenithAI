@@ -1,12 +1,12 @@
-import React from 'react'
+// BotMessage.js
+import React from 'react';
 
-const BotMessage = (props) => {
-    const { message } = props;
-  return (
-    <div className='w-3/5 bg-[#E3E7ED] p-3 ml-9 mt-6 border-2 border-[#B3CDEE] rounded-md'>
-        { message }
-    </div>
-  )
-}
+const BotMessage = ({ message }) => {
+    return (
+        <div className="w-fit max-w-lg bg-blue-100 text-blue-900 p-4 rounded-lg shadow-md animate-slideInLeft">
+            {message}
+        </div>
+    );
+};
 
-export default BotMessage
+export default BotMessage;
