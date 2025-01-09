@@ -5,11 +5,12 @@ import SignIn from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import LoadingPage from './pages/LoadingPage';
 import ProfilePage from './pages/ProfilePage';
-import ARMeditationPage from './pages/ArMeditationPage';
+
 import Home from './pages/Home';
 
 import Chat from './pages/Chat';
 import FaceDetectionPage from './pages/FaceDetection';
+import ARMeditationPage from './pages/ARMeditationPage';
 const App = () => {
 
   const router = createBrowserRouter([
