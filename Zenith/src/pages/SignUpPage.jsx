@@ -7,7 +7,7 @@ const SignUpPage = () => {
       <div className="w-full max-w-md p-4">
         <SignUp 
           signInUrl="/sign-in"
-          redirectUrl="/home" // Ensure the redirect after successful signup
+          forceRedirectUrl="https://zenith-mvbdgb93g-dash10107s-projects.vercel.app/home" // Ensure the redirect after successful signup
         />
       </div>
     </main>
