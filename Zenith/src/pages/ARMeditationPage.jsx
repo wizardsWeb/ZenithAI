@@ -1,7 +1,7 @@
 import React from 'react';
 import { ARMeditationRoom } from '../component/ArMeditationRoom/ARMeditationRoom';
 
-export default function ARMeditationPage() {
+ const  ARMeditationPage = () => {
   return (
     <div className="ar-meditation-page">
       <h1 className="sr-only">AR Meditation Room</h1>
@@ -17,3 +17,4 @@ export default function ARMeditationPage() {
   );
 }
 
+export default ARMeditationPage;
