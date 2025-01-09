@@ -18,10 +18,10 @@ export const AuthLayout = () => {
   const navigate = useNavigate();
 
   // Redirect the user if they are not signed in
-  // if (!isSignedIn) {
-  //   navigate('/sign-in', { replace: true });
-  //   return null; // Avoid rendering anything else while redirecting
-  // }
+  if (!isSignedIn) {
+    navigate('/sign-in', { replace: true });
+    return null; // Avoid rendering anything else while redirecting
+  }
 
   return (
     <div className="layout h-screen">
