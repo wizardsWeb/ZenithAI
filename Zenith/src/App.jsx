@@ -5,7 +5,7 @@ import SignIn from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import LoadingPage from './pages/LoadingPage';
 import ProfilePage from './pages/ProfilePage';
-import ARMeditationPage from './pages/ArMeditationPage';
+// import ARMeditationPage from './pages/ArMeditationPage';
 import CategorySection from './pages/CategorySection';
 import ArticleListPage from './pages/ArticleListPage';
 import Blogs from './pages/Blogs';
@@ -16,6 +16,7 @@ import Home from './pages/Home';
 
 import Chat from './pages/Chat';
 import FaceDetectionPage from './pages/FaceDetection';
+import ARMeditationPage from './pages/ArMeditationPage';
 const App = () => {
 
   const router = createBrowserRouter([
