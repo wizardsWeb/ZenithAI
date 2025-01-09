@@ -24,10 +24,10 @@ Hello there. I'm so sorry to hear that you're feeling down. I'd be happy to try 
 # @cross_origin()
 def voice():
     st = AudioToText()
-    # result = bot(st)
-    # print(result.get('answer'))
-    TextToAudio(sampleoutput)   
-    return jsonify({'st':sampleoutput})
+    result = bot(st)
+    print(result.get('answer'))
+    TextToAudio(result.get('answer'))   
+    return jsonify({'st':result.get('answer')})
     # TextToAudio(st)
     # st= "Hello, the code is working"
     # return jsonify({'st':st})
@@ -37,8 +37,8 @@ def voice():
 def predict():
     try:
         chat = request.get_json()
-        # result = bot(chat.get('data'))
-        # return jsonify({"data":result.get('answer')})
+        result = bot(chat.get('data'))
+        return jsonify({"data":result.get('answer')})
         # code = {"data": "Hello, the code is working"}
         code  = {"data":sampleoutput3}
         return code
