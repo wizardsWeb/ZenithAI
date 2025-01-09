@@ -6,8 +6,8 @@ const SignInPage = () => {
     <main className="flex items-center justify-center h-screen w-screen bg-gray-100">
       <div className="w-full max-w-md p-4">
         <SignIn
-          signUpUrl="/sign-up"
-          forceRedirectUrl="https://zenith-mvbdgb93g-dash10107s-projects.vercel.app/home"
+          signUpUrl="/"
+          forceRedirectUrl="/home"
         />
       </div>
     </main>
