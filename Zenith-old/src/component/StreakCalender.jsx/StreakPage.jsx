@@ -65,9 +65,11 @@ export function StreakPage() {
         <StreakCalendar daysLogged={streakData.daysLogged} />
       </div>
 
+      <a href="/blogs">
       <button className="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-gray-900 transition duration-200">
         Write Today's Journal Entry
       </button>
+      </a>
     </div>
   )
 }

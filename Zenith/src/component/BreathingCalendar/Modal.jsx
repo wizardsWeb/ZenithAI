@@ -4,8 +4,8 @@ function Modal({ isOpen, onClose, onSave, formData, setFormData, selectedDay }) 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex justify-center items-center z-50">
-      <div className="bg-card text-card-foreground rounded-lg shadow-lg max-w-md w-full">
+    <div className="fixed inset-0  backdrop-blur-md flex justify-center items-center z-50">
+      <div className="bg-white text-card-foreground rounded-lg shadow-lg max-w-md w-full border border-black">
         <div className="flex flex-col space-y-1.5 p-6">
           <h3 className="text-2xl font-semibold leading-none tracking-tight">Log Activity for {selectedDay}</h3>
           <p className="text-sm text-muted-foreground">Enter your breathing session details.</p>

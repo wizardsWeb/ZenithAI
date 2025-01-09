@@ -34,7 +34,7 @@ export default function FaceDetectionPage() {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen text-gray-800">
+    <div className="bg-gray-100 min-h-screen min-w-screen text-gray-800">
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {isModalOpen && <FaceDetection />}
       </Modal>

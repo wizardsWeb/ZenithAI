@@ -25,7 +25,7 @@ export const AuthLayout = () => {
 
   return (
     <div className="layout h-screen">
-      <div className="navbar h-[70px]">
+      <div className="navbar h-[100px]">
         <NavBar />
       </div>
       <div className="content" style={{ height: 'calc(100vh - 70px)' }}>

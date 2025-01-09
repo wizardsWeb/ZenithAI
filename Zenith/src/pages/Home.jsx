@@ -4,7 +4,7 @@ import About from '../component/home/About';
 import Features from '../component/home/Features';
 import Contact from '../component/home/Contact';
 import Footer from '../component/home/Footer';
-// import Dictaphone from '../Dictaphone';
+import Dictaphone from '../Dictaphone';
 
 
 
@@ -16,7 +16,7 @@ function Home() {
     <Features />
     <Contact />
     <Footer />
-    {/* <Dictaphone/> */}
+    <Dictaphone/>
   </main>
   );
 }

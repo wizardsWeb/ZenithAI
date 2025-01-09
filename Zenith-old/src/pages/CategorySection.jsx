@@ -58,7 +58,7 @@ const CategorySection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="p-8 ">
+    <div className="p-8 bg-gray-100">
       <h1 className="text-3xl font-bold text-center mb-8">Explore Articles by Category</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category, index) => (
@@ -66,7 +66,7 @@ const CategorySection = () => {
             key={index}
             className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105"
           >
-            <div className="bg-gray-800 text-white p-4 text-center">
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 text-center">
               <h2 className="text-xl font-semibold">{category.title}</h2>
             </div>
             <div className="p-4">
@@ -77,10 +77,10 @@ const CategorySection = () => {
                 >
                   <span className="flex items-center">
                     <span className="text-2xl mr-3">{item.icon}</span>
-                    <span className="text-md font-medium">{item.title}</span>
+                    <span className="text-sm font-medium">{item.title}</span>
                   </span>
                   <button
-                    className="text-md  font-semibold hover:underline"
+                    className="text-sm text-purple-500 font-semibold hover:underline"
                     onClick={() =>
                       navigate(
                         `/articles/${category.title.toLowerCase()}/${item.title

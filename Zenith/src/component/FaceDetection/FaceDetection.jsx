@@ -47,13 +47,16 @@ const FaceDetection = () => {
       document.body.append(canvas);
       canvasRef.current = canvas;
 
+      // Adjust canvas style to align with the video element
+      const { left, top, width, height } = video.getBoundingClientRect();
       canvas.style.position = "absolute";
-      canvas.style.left = `${video.offsetLeft}px`;
-      canvas.style.top = `${video.offsetTop}px`;
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      canvas.style.left = `${left}px`;
+      canvas.style.top = `${top}px`;
+      canvas.width = width;
+      canvas.height = height;
+      canvas.style.zIndex = 9999;  // Make sure the canvas appears above other elements
 
-      const displaySize = { width: video.videoWidth, height: video.videoHeight };
+      const displaySize = { width: width, height: height };
       faceapi.matchDimensions(canvas, displaySize);
 
       let moodData = [];
@@ -159,4 +162,3 @@ const FaceDetection = () => {
 };
 
 export default FaceDetection;
-

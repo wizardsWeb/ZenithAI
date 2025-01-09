@@ -1,40 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const BlogCard = (props) => {
+const BlogCard = ({ title, content, imgUrl }) => {
   const navigate = useNavigate();
+
   const handleDescription = () => {
-    navigate("/description", {
-      state: {
-        title: props.title,
-        content: props.content,
-        imgUrl: props.imgUrl,
-      },
-    });
+    navigate("/description", { state: { title, content, imgUrl } });
   };
+
   return (
-    <div className="w-full max-lg:max-w-xl lg:w-[30%] border border-gray-300 rounded-2xl">
-      <div className="flex items-center">
-        <img
-          src={props.imgUrl}
-          className="rounded-t-2xl w-full object-fill h-[300px]"
-        />
-      </div>
-      <div className="p-4 lg:p-6 transition-all duration-300 rounded-b-2xl group-hover:bg-[#d7d7ed]">
-        <span className="text-indigo-600 font-medium mb-3 block">
-          {new Date().toDateString()}
-        </span>
-        <h4 className="text-xl text-gray-900 font-medium leading-8 mb-5">
-          {props.title}
-        </h4>
-        <p className="text-gray-500 line-clamp-2 leading-6 mb-10">
-          {props.content}
-        </p>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+      <img src={imgUrl} alt={title} className="w-full h-48 object-cover" />
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
+        <p className="text-gray-600 mb-4 line-clamp-3">{content}</p>
         <button
           onClick={handleDescription}
-          className="cursor-pointer text-lg text-indigo-600 font-semibold"
+          className="text-indigo-600 font-semibold hover:text-indigo-800 transition duration-300"
         >
-          Read more..
+          Read more
         </button>
       </div>
     </div>
@@ -42,3 +26,4 @@ const BlogCard = (props) => {
 };
 
 export default BlogCard;
+

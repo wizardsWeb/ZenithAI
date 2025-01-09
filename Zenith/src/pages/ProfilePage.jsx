@@ -4,6 +4,7 @@ import MoodCalendar from '../component/MoodCalendar';
 import BreathingCalendar from '../component/BreathingCalendar/BreathingCalendar';
 import { StreakPage } from '../component/StreakCalender.jsx/StreakPage';
 import MeditationTracker from '../component/MeditationCalendar/MeditationTracker';
+import Dictaphone from '../Dictaphone';
 
 
 const ProfilePage = () => {
@@ -113,6 +114,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </section>
+      <Dictaphone/>
     </main>
   );
 };

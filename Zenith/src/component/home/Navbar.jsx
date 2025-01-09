@@ -7,9 +7,9 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full text-gray-700 bg-white">
+    <div className="w-full text-gray-700 bg-white h-screen z-50">
       <div className="flex flex-col max-w-screen-6xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
-        <div className="p-4 flex flex-row justify-between items-center h-[70px]">
+        <div className="p-4 flex flex-row justify-between items-center h-[100px]">
           <a
             href="/home"
             className="text-xl font-semibold tracking-widest text-gray-900 uppercase rounded-lg  focus:outline-none focus:shadow-outline"
@@ -43,18 +43,18 @@ const Navbar = () => {
         </div>
         <nav
           className={`${
-            menuOpen ? "flex" : "hidden"
+            menuOpen ? "flex h-screen z-50 bg-white gap-8" : "hidden"
           } flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row`}
         >
            <a
             href="https://framevr.io/zenithai"
-            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-md font-semibold text-gray-900 rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-xl font-semibold text-gray-900 rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
           >
             Virtual Mediation
           </a>
           <a
             href="/articles"
-            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-md font-semibold text-gray-900 rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-xl font-semibold text-gray-900 rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
           >
             Articles
           </a>
@@ -62,20 +62,20 @@ const Navbar = () => {
          
           <a
             href="/face-detection"
-            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-md font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-xl font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
           >
             Mood Detection
           </a>
           <a
             href="/chat"
-            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-md font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-xl font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
           >
             Virutal Chat
           </a>
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="hover:scale-105 hover:duration-300 hover:transition-all flex flex-row items-center w-full px-4 py-2 mt-2 text-md  font-semibold text-left bg-transparent rounded-lg dark:bg-transparent md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+              className="hover:scale-105 hover:duration-300 hover:transition-all flex flex-row items-center w-full px-4 py-2 mt-2 text-xl  font-semibold text-left bg-transparent rounded-lg dark:bg-transparent md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
             >
               <span>Helpline</span>
               <svg
@@ -94,19 +94,19 @@ const Navbar = () => {
             </button>
             {dropdownOpen && (
               <div className="absolute right-0 w-full mt-4 origin-top-right rounded-md shadow-lg md:w-96 z-50">
-                <div className="px-2 py-2 bg-white rounded-md shadow">
+                <div className="px-2 py-2 bg-white rounded-xl shadow">
                   <a
                     href="https://www.thelivelovelaughfoundation.org/find-help/helplines"
                    
                   >
-                   <p className="block px-4 py-4  text-md hover:scale-105 hover:duration-300 hover:transition-all font-semibold bg-transparent rounded-lg dark:bg-transparent  md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"> Find Help </p>
+                   <p className="block px-4 py-4  text-xl hover:scale-105 hover:duration-300 hover:transition-all font-semibold bg-transparent rounded-lg dark:bg-transparent  md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"> Find Help </p>
                   </a>
                   <div className=" bg-gray-800 h-[0.5px]"></div>
                   <a
                     href="https://www.nimh.nih.gov/health/topics/suicide-prevention"
                    
                   >
-                  <p className="block px-4 py-4  text-md hover:scale-105 hover:duration-300 hover:transition-all font-semibold bg-transparent rounded-lg dark:bg-transparent  md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"> Suicide Prevention  </p>
+                  <p className="block px-4 py-4 text-xl hover:scale-105 hover:duration-300 hover:transition-all font-semibold bg-transparent rounded-lg dark:bg-transparent  md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"> Suicide Prevention  </p>
                   </a>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const Navbar = () => {
           </div>
           <a
             href="/profile"
-            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-md font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline flex items-center gap-4"
+            className="hover:scale-105 hover:duration-300 hover:transition-all px-4 py-2 mt-2 text-xl font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 focus:bg-gray-200 focus:outline-none focus:shadow-outline flex items-center gap-4"
           >
             <UserButton />
             <span>

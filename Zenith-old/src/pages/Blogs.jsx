@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import BlogCard from "../component/Blogs/BlogCard";
-import Dictaphone from "../Dictaphone";
 
 const Blogs = () => {
   const [posts, setPosts] = useState([]);
@@ -119,7 +118,6 @@ const Blogs = () => {
           ))}
         </div>
       </div>
-      <Dictaphone/> 
     </section>
   );
 };

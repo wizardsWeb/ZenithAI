@@ -1,9 +1,11 @@
+import 'regenerator-runtime';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { ClerkProvider } from '@clerk/clerk-react';
 const { VITE_CLERK_PUBLISHABLE_KEY } = import.meta.env;
+// import "regenerator-runtime/runtime";
 
 const publishableKey = VITE_CLERK_PUBLISHABLE_KEY;
 

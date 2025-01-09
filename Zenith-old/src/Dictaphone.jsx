@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { useNavigate } from 'react-router-dom';
+import { FaMicrophone, FaMicrophoneAltSlash } from 'react-icons/fa'; // For the microphone icons
 
 const Dictaphone = () => {
+  const [isListening, setIsListening] = useState(false);
   const {
     transcript,
     listening,
@@ -10,42 +12,72 @@ const Dictaphone = () => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
   
-  const navigate = useNavigate(); // Hook to use React Router for navigation
+  const navigate = useNavigate();
 
-  // If the browser doesn't support SpeechRecognition, show a message
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return (
+      <div className="fixed bottom-0 left-0 w-full bg-red-500 text-white p-4 text-center">
+        Browser doesn't support speech recognition.
+      </div>
+    );
   }
 
-  // Function to handle navigation based on the transcript command
+  const speakText = (text) => {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = 'en-US'; // Set language to English
+    window.speechSynthesis.speak(speech);
+  };
+
   const handleNavigation = () => {
-    if (transcript.toLowerCase().includes("go to home")) {
+    const transcriptLower = transcript.toLowerCase();
+
+    if (transcriptLower.includes("home")) {
       navigate("/home");
-    } else if (transcript.toLowerCase().includes("go to profile")) {
+      speakText("Going to Home page");
+    } else if (transcriptLower.includes("profile")) {
       navigate("/profile");
-    } else if (transcript.toLowerCase().includes("go to chat")) {
+      speakText("Going to Profile page");
+    } else if (transcriptLower.includes("chat")) {
       navigate("/chat");
-    } else if (transcript.toLowerCase().includes("go to ar meditation")) {
+      speakText("Going to Chat page");
+    } else if (transcriptLower.includes("meditation")) {
       navigate("/ar-meditation");
-    } else if (transcript.toLowerCase().includes("go to face detection")) {
+      speakText("Going to Meditation page");
+    } else if (transcriptLower.includes("detection")) {
       navigate("/face-detection");
+      speakText("Going to Face Detection page");
     }
   };
 
+  const toggleListening = () => {
+    if (isListening) {
+      SpeechRecognition.stopListening();
+    } else {
+      SpeechRecognition.startListening();
+    }
+    setIsListening(!isListening);
+  };
+
   useEffect(() => {
-    // Check for valid command after every new transcript
     if (transcript) {
+      console.log(transcript);
       handleNavigation();
     }
-  }, [transcript]); // Run handleNavigation whenever transcript changes
+  }, [transcript]);
 
   return (
     <div>
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>
+      {/* Floating Button with Microphone Icon */}
+      <div
+        className="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-lg cursor-pointer"
+        onClick={toggleListening}
+      >
+        {isListening ? (
+          <FaMicrophoneAltSlash size={24} />
+        ) : (
+          <FaMicrophone size={24} />
+        )}
+      </div>
     </div>
   );
 };

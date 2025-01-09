@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Dictaphone from "../Dictaphone";
 
 // Articles data with real examples based on your description
 const articles = {
@@ -196,38 +195,38 @@ const ArticleListPage = () => {
 
   const subcategoryArticles = articles[category]?.[subcategory];
 
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 p-8">
-      <h1 className="text-4xl font-extrabold mb-6 capitalize text-center text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-beige-200 via-cream-200 to-light-brown-100 text-brown-800 p-8">
+      <h1 className="text-4xl font-extrabold mb-6 capitalize text-center calming-text">
         {subcategory?.replace(/-/g, " ")} Articles
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {subcategoryArticles?.map((article) => (
           <div
             key={article.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:shadow-lg"
+            className="relative bg-gradient-to-r from-beige-100 to-light-brown-200 shadow-lg rounded-xl p-6 text-center transition-transform transform hover:scale-105 hover:shadow-xl"
           >
-            <div className="p-6">
-              <h2 className="text-3xl font-semibold text-gray-800 mb-2">{article.title}</h2>
-              <p className="text-lg text-gray-600 mb-4">{article.content}</p>
-              <Link
-                to={article.url || `/articles/${category}/${subcategory}/${article.id}`}
-                className="inline-block bg-black font-semibold text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
-              >
+            <h2 className="text-2xl font-semibold text-brown-900">{article.title}</h2>
+            <p className="text-sm mt-3 text-brown-700">{article.content}</p>
+            <Link
+              to={article.url ? article.url :  `/articles/${category}/${subcategory}/${article.id}`}
+              className="mt-4 inline-block text-sm text-blue-600 hover:underline"
+            >
+            <button type="button" className="">
                 Read Full Article
-              </Link>
-            </div>
+              </button>
+            </Link>
           </div>
         )) || (
-          <div className="col-span-full text-center text-gray-600">
+          <div className="col-span-full text-center text-brown-700 opacity-80">
             No articles available for this subcategory.
           </div>
         )}
       </div>
-      <Dictaphone/>
     </div>
   );
 };
 
 export default ArticleListPage;
-
