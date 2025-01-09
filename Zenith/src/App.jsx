@@ -5,12 +5,17 @@ import SignIn from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 import LoadingPage from './pages/LoadingPage';
 import ProfilePage from './pages/ProfilePage';
-
+import ARMeditationPage from './pages/ArMeditationPage';
+import CategorySection from './pages/CategorySection';
+import ArticleListPage from './pages/ArticleListPage';
+import Blogs from './pages/Blogs';
+import BlogsDescription from './pages/BlogsDescription';
+import Games from './pages/Games';
 import Home from './pages/Home';
+
 
 import Chat from './pages/Chat';
 import FaceDetectionPage from './pages/FaceDetection';
-import ARMeditationPage from './pages/ARMeditationPage';
 const App = () => {
 
   const router = createBrowserRouter([
@@ -55,8 +60,27 @@ const App = () => {
         {
           path: "/chat",
           element: <Chat />
-        }
-
+        },
+        {
+          path: "/articles",
+          element: <CategorySection />
+        },
+        {
+          path: "/articles/:category/:subcategory",
+          element: <ArticleListPage />
+        },
+        {
+          path: "/blogs",
+          element: <Blogs />,
+        },
+        {
+          path: "/description",
+          element: <BlogsDescription />,
+        },
+        {
+          path: "/games",
+          element: <Games />,
+        },
       ]
     }
   ])
